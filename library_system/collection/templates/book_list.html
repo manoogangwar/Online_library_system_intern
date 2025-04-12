@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>books</title></head>
+<body>
+  <h2>books List</h2>
+  <a href="{% url 'add_book' %}">add Book</a>
+  <ul>
+    {% for book in object_list %}
+      <li>{{ book.title }} - {{ book.genre }} - {{ book.author.name }}</li>
+    {% empty %}
+      <li>No books found.</li>
+    {% endfor %}
+  </ul>
+  {% include "pagination.html" %}
+</body>
+</html>

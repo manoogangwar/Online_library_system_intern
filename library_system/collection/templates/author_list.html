@@ -1,0 +1,25 @@
+1<!DOCTYPE html>
+<html>
+<head><title>Authors</title></head>
+<body>
+  <h2>authors List</h2>
+  <a href="{% url 'add_author' %}">add author</a> |
+  <a href="{% url 'export-excel' %}">export to excel</a>
+  <ul>
+    {% for author in object_list %}
+      <li>{{ author.name }} - {{ author.email }}</li>
+    {% empty %}
+      <li>No authors found.</li>
+    {% endfor %}
+  </ul>
+  {% if is_paginated %}
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
+  {% endif %}
+</body>
+</html>

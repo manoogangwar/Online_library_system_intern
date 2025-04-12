@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>borrow records</title></head>
+<body>
+  <h2>borrow records</h2>
+  <a href="{% url 'add_borrow' %}">Add Borrow Record</a>
+  <ul>
+    {% for record in object_list %}
+      <li>{{ record.user_name }} borrowed "{{ record.book.title }}" ({{ record.borrow_date }} → {{ record.return_date }})</li>
+    {% empty %}
+      <li>No borrow records found.</li>
+    {% endfor %}
+  </ul>
+  {% include "pagination.html" %}
+</body>
+</html>
